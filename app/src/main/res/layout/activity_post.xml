@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_post_poststring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/poststring" />
+
+        <Button
+            android:id="@+id/btn_post_sync_poststring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_poststring" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_post_postbean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/postbean" />
+
+        <Button
+            android:id="@+id/btn_post_sync_postbean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_postbean" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_post_postlistbean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/postlistbean" />
+
+        <Button
+            android:id="@+id/btn_post_sync_postlistbean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sync_poststring" />
+    </LinearLayout>
+</LinearLayout>

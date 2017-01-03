@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Net</string>
+
+    <string name="no_open_network">网络未打开</string>
+    <string name="request_failed_server">服务器返回数据异常</string>
+    <string name="request_failed">网络请求发生异常</string>
+
+    <string name="index_get">get</string>
+    <string name="index_post">post</string>
+    <string name="index_custom">custom</string>
+
+    <string name="getstring">getstring</string>
+    <string name="sync_getstring">sync_getstring</string>
+    <string name="getbean">getbean</string>
+    <string name="sync_getbean">sync_getbean</string>
+    <string name="getlistbean">getlistbean</string>
+    <string name="sync_getlistbean">sync_getlistbean</string>
+
+    <string name="poststring">poststring</string>
+    <string name="sync_poststring">sync_poststring</string>
+    <string name="postbean">postbean</string>
+    <string name="sync_postbean">sync_postbean</string>
+    <string name="postlistbean">postlistbean</string>
+    <string name="sync_postlistbean">sync_postlistbean</string>
+
+    <string name="customstring">customstring</string>
+    <string name="custombean">custombean</string>
+    <string name="custom">custom</string>
+    <string name="sync_custom">sync_custom</string>
+</resources>
