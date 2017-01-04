@@ -12,13 +12,15 @@ import org.json.JSONObject;
 
 public class NetNewsBean extends NetCommonBean {
     private String title;
-    private String content;
+    private String desc;
+    private String date;
 
     @Override
     public NetNewsBean getBeanByJson(JSONObject jsonObject) throws JSONException {
         // 你要自己解析：
 //        this.title = jsonObject.optString("title");
-//        this.content = jsonObject.optString("content");
+//        this.desc = jsonObject.optString("desc");
+//        this.date = jsonObject.optString("date");
 //        return this;
 
         // 你要用Gson解析，只需要一行代码：
@@ -28,6 +30,39 @@ public class NetNewsBean extends NetCommonBean {
 //        return JSON.parseObject(jsonObject.toString(), NetNewsBean.class);
 
         return null;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "NetNewsBean{" +
+                "title='" + title + '\'' +
+                ", desc='" + desc + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 
 }

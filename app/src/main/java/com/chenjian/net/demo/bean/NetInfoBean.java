@@ -11,47 +11,47 @@ import org.json.JSONObject;
  */
 
 public class NetInfoBean extends NetBaseBean {
-    private String title;
-    private String desc;
-    private String date;
+    private String infoTitle;
+    private String infoDesc;
+    private String infoDate;
 
     @Override
     public void initByJson(JSONObject jsonObject) throws JSONException {
-        this.title = jsonObject.getString("title");
-        this.desc = jsonObject.getString("desc");
-        this.date = jsonObject.getString("date");
+        this.infoTitle = jsonObject.getString("title");
+        this.infoDesc = jsonObject.getString("desc");
+        this.infoDate = jsonObject.getString("date");
     }
 
-    public String getTitle() {
-        return title;
+    public String getInfoTitle() {
+        return infoTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setInfoTitle(String infoTitle) {
+        this.infoTitle = infoTitle;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getInfoDesc() {
+        return infoDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setInfoDesc(String infoDesc) {
+        this.infoDesc = infoDesc;
     }
 
-    public String getDate() {
-        return date;
+    public String getInfoDate() {
+        return infoDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setInfoDate(String infoDate) {
+        this.infoDate = infoDate;
     }
 
     @Override
     public String toString() {
         return "NetInfoBean{" +
-                "title='" + title + '\'' +
-                ", desc='" + desc + '\'' +
-                ", date='" + date + '\'' +
+                "infoTitle='" + infoTitle + '\'' +
+                ", infoDesc='" + infoDesc + '\'' +
+                ", infoDate='" + infoDate + '\'' +
                 '}';
     }
 }

@@ -14,6 +14,6 @@ public class UrlConst {
     public static final String LOGIN = "login";
     public static final String USER = "user";
     public static final String USER_LIST = "user_list";
+    public static final String INFO = "info";
     public static final String INFO_LIST = "info_list";
-
 }

@@ -28,6 +28,7 @@
         <activity android:name=".demo.activity.GetActivity" />
         <activity android:name=".demo.activity.PostActivity" />
         <activity android:name=".demo.activity.CustomActivity" />
+        <activity android:name=".demo.activity.OtherJsonActivity" />
     </application>
 
 </manifest>
