@@ -15,6 +15,9 @@ public class TokenUtil {
         TokenUtil.isWaitToken = isWaitToken;
     }
 
+    /**
+     * 此方法只能在非ui线程中调用，慎用
+     */
     public static void waitToken() {
         while (isWaitToken) {
             if (NetVariables.token != null && !NetVariables.token.equals("")) {

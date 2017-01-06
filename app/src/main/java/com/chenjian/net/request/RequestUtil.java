@@ -11,8 +11,8 @@ import com.chenjian.net.demo.url.UrlConst;
 
 public class RequestUtil {
 
-    private static String TAG = RequestUtil.class.getName();
-
+//    private static String TAG = RequestUtil.class.getName();
+//
 //    /**
 //     * get请求
 //     *

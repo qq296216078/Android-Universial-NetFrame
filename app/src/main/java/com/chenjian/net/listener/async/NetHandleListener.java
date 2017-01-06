@@ -13,8 +13,6 @@ import com.chenjian.net.listener.common.CallbackCode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.chenjian.net.listener.common.CallbackCode.CODE_ERROR_JSON_EXP;
-
 /**
  * 公用网络逻辑，核心监听器。自定义监听器一般继承这个类
  * <p>
@@ -90,7 +88,7 @@ abstract public class NetHandleListener implements NetListener {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            netRetBean.setCallbackCode(CODE_ERROR_JSON_EXP);
+            netRetBean.setCallbackCode(CallbackCode.CODE_ERROR_JSON_EXP);
         }
         handleResult(netRetBean);
     }
@@ -145,7 +143,7 @@ abstract public class NetHandleListener implements NetListener {
      * 运行在ui线程
      * <p>
      * 在onSuccess和onError之前都会调用这个方法。
-     * 子类可以重写，onSuccess和onError有大量重复代码时，只要在在重写的onCommon方法里面执行就可以了
+     * 子类可以重写，onSuccess和onError有大量重复代码时，只要在重写的onCommon方法里面执行就可以了
      */
     protected void onCommon() {
 

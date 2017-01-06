@@ -121,6 +121,22 @@ public class GetActivity extends Activity {
                 requestError(netRetBean);
             }
         });
+
+        NetHelper.get("url", new NetStringListener() {
+            @Override
+            protected void onSuccess(String string) {
+                /**
+                 * 这里返回的数据就会是 "id":"123", "name":"chenjian"，
+                 * 然后你在这里再进行解析，不过这里已经是ui线程了，
+                 * 在ui线程如果做大量复杂的解析，可能不太好。少量的话，并没影响
+                 */
+            }
+
+            @Override
+            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+
+            }
+        });
     }
 
     private void syncGetString() {

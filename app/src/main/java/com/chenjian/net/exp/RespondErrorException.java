@@ -9,7 +9,22 @@ package com.chenjian.net.exp;
 
 public class RespondErrorException extends BaseException {
 
+    private int mRespondCode;
+
+    public RespondErrorException(int respondCode) {
+        super(ExceptionCode.EXPCODE_RESPOND_ERROR);
+        this.mRespondCode = respondCode;
+    }
+
     public RespondErrorException() {
         super(ExceptionCode.EXPCODE_RESPOND_ERROR);
+    }
+
+    public int getRespondCode() {
+        return mRespondCode;
+    }
+
+    public void setRespondCode(int respondCode) {
+        this.mRespondCode = respondCode;
     }
 }
