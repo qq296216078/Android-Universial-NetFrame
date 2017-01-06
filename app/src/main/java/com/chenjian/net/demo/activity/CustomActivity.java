@@ -96,6 +96,11 @@ public class CustomActivity extends Activity {
         UrlParse paramParse = new UrlParse().putValue("page", "1").putValue("page_size", "3");
         NetHelper.post(urlParse.toStringOnlyHeader(), paramParse.toStringOnlyParam(), new NetStringListener() {
             @Override
+            protected void onCommon() {
+                super.onCommon();
+            }
+
+            @Override
             protected void onSuccess(String string) {
                 LogUtil.d(string);
             }

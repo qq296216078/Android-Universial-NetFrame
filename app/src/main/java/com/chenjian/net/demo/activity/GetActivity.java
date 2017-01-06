@@ -106,6 +106,11 @@ public class GetActivity extends Activity {
 
         NetHelper.get(urlParse.toString(), new NetStringListener() {
             @Override
+            protected void onCommon() {
+                super.onCommon();
+            }
+
+            @Override
             protected void onSuccess(String string) {
                 LogUtil.d(string);
             }

@@ -6,6 +6,10 @@ package com.chenjian.net.demo.bean;
  */
 
 public class NetGsonBean {
+    /**
+     * gson要求属性名必须和json字符串里面的key值一样才能解析，找不到对应的key的话，就为null
+     */
+
     private String title;
     private String desc;
     private String date;
