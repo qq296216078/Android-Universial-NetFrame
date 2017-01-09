@@ -128,6 +128,19 @@ public class CustomActivity extends Activity {
                 LogUtil.d(infoListBean.toString());
             }
         });
+
+//        NetHelper.get("url", new NetSingleBeanListener<NetCustomBean<NetUserBean>>() {
+//            @Override
+//            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+//
+//            }
+//
+//            @Override
+//            protected void onSuccess(NetCustomBean<NetUserBean> netUserBeanNetCustomBean) {
+//                NetPageBean netPageBean = netUserBeanNetCustomBean.getNetPageBean();
+//                List<NetUserBean> netUserBeen = netUserBeanNetCustomBean.getTList();
+//            }
+//        });
     }
 
     private void custom() {

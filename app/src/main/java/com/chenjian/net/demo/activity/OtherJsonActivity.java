@@ -67,11 +67,12 @@ public class OtherJsonActivity extends Activity {
         NetHelper.get(urlParse.toString(), new NetSingleGsonListener<NetGsonBean>() {
             @Override
             protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
-
+                // 这里是ui线程
             }
 
             @Override
             protected void onSuccess(NetGsonBean gsonBean) {
+                // 这里是ui线程
                 // 解析成功
                 LogUtil.d(gsonBean.toString());
             }
