@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-Universial-NetFrame.iml" filepath="$PROJECT_DIR$/Android-Universial-NetFrame.iml" />
       <module fileurl="file://$PROJECT_DIR$/Net.iml" filepath="$PROJECT_DIR$/Net.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
