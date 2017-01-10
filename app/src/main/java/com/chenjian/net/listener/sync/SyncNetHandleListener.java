@@ -9,8 +9,6 @@ import com.chenjian.net.listener.common.CallbackCode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.chenjian.net.listener.common.CallbackCode.CODE_ERROR_JSON_EXP;
-
 /**
  * 公用网络逻辑，核心监听器。自定义监听器一般继承这个类
  * <p>
@@ -51,7 +49,7 @@ abstract public class SyncNetHandleListener implements SyncNetListener {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            netRetBean.setCallbackCode(CODE_ERROR_JSON_EXP);
+            netRetBean.setCallbackCode(CallbackCode.CODE_ERROR_JSON_EXP);
         }
         return handleResult(netRetBean);
     }

@@ -5,7 +5,7 @@ import com.chenjian.net.core.async.NetExcutor;
 import com.chenjian.net.core.async.NetListener;
 import com.chenjian.net.core.sync.SyncNetExcutor;
 import com.chenjian.net.core.sync.SyncNetListener;
-import com.chenjian.net.data.NetVariables;
+import com.chenjian.net.data.NetConstants;
 
 /**
  * 网络请求工具类
@@ -23,7 +23,7 @@ public class NetHelper {
      * @param listener 监听器
      */
     public static void get(String url, NetListener listener) {
-        get(url, NetVariables.defaultWaitForToken, listener);
+        get(url, NetConstants.defaultWaitForToken, listener);
     }
 
     /**
@@ -49,7 +49,7 @@ public class NetHelper {
      * @param listener 监听器
      */
     public static void post(String url, String params, NetListener listener) {
-        post(url, params, NetVariables.defaultWaitForToken, listener);
+        post(url, params, NetConstants.defaultWaitForToken, listener);
     }
 
     /**
@@ -77,7 +77,7 @@ public class NetHelper {
      * @return NetRetBean
      */
     public static NetRetBean getSync(String url, SyncNetListener syncNetListener) {
-        return getSync(url, NetVariables.defaultWaitForToken, syncNetListener);
+        return getSync(url, NetConstants.defaultWaitForToken, syncNetListener);
     }
 
     /**
@@ -105,7 +105,7 @@ public class NetHelper {
      * @return NetRetBean
      */
     public static NetRetBean postSync(String url, String params, SyncNetListener syncNetListener) {
-        return postSync(url, params, NetVariables.defaultWaitForToken, syncNetListener);
+        return postSync(url, params, NetConstants.defaultWaitForToken, syncNetListener);
     }
 
     /**
@@ -133,7 +133,7 @@ public class NetHelper {
      * @return String
      */
     public static String getStringSync(String url) {
-        return getStringSync(url, NetVariables.defaultWaitForToken);
+        return getStringSync(url, NetConstants.defaultWaitForToken);
     }
 
     /**
@@ -158,7 +158,7 @@ public class NetHelper {
      * @return String
      */
     public static String postStringSync(String url, String params) {
-        return postStringSync(url, params, NetVariables.defaultWaitForToken);
+        return postStringSync(url, params, NetConstants.defaultWaitForToken);
     }
 
     /**

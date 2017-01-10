@@ -1,5 +1,8 @@
 package com.chenjian.net.url;
 
+import com.chenjian.net.demo.app.DemoApplication;
+import com.chenjian.net.demo.util.PackageUtil;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,14 +59,8 @@ public class JsonManager {
     public JSONObject getDefaultCommonJson() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("aid", "");
-            jsonObject.put("mac", "");
-            jsonObject.put("imei", "");
-            jsonObject.put("gaid", "");
-            jsonObject.put("channel", "");
-            jsonObject.put("root", "");
-            jsonObject.put("gp", "");
-            jsonObject.put("app_ver", "");
+            jsonObject.put("app_version_name", PackageUtil.getAppVersionName(DemoApplication.context));
+            jsonObject.put("app_version_code", String.valueOf(PackageUtil.getAppVersionCode(DemoApplication.context)));
         } catch (JSONException e) {
             e.printStackTrace();
         }

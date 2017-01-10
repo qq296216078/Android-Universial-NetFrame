@@ -78,6 +78,11 @@ public class PostActivity extends Activity {
 
         NetHelper.post(urlParse.toStringOnlyHeader(), paramParse.toStringOnlyParam(), new NetStringListener() {
             @Override
+            protected void onCommon() {
+                super.onCommon();
+            }
+
+            @Override
             protected void onSuccess(String string) {
                 LogUtil.d(string);
             }
@@ -88,6 +93,22 @@ public class PostActivity extends Activity {
                 requestError(netRetBean);
             }
         });
+
+//        NetHelper.post(urlParse.toStringOnlyHeader(), paramParse.toStringOnlyParam(), new NetSimpleStringListener(this) {
+//            @Override
+//            protected void onSuccess(String string) {
+//                LogUtil.d(string);
+//            }
+//
+//            @Override
+//            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+//                if (errorCode == CallbackCode.CODE_ERROR_JSON_EXP) {
+//                    // 在json解析失败时，你需要做特殊的处理，其它时候，用默认的错误处理
+//                } else {
+//                    super.onError(errorCode, netRetBean);
+//                }
+//            }
+//        });
     }
 
     private void syncPostString() {

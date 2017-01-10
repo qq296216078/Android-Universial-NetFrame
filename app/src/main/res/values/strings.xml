@@ -8,6 +8,7 @@
     <string name="index_get">get</string>
     <string name="index_post">post</string>
     <string name="index_custom">custom</string>
+    <string name="index_otherjson">otherjson</string>
 
     <string name="getstring">getstring</string>
     <string name="sync_getstring">sync_getstring</string>
@@ -27,4 +28,10 @@
     <string name="custombean">custombean</string>
     <string name="custom">custom</string>
     <string name="sync_custom">sync_custom</string>
+
+    <string name="gson">gson</string>
+    <string name="gson_error">gson_error</string>
+    <string name="fastjson">fastjson</string>
+    <string name="fastjson_error">fastjson_error</string>
+    <string name="otherjson">otherjson</string>
 </resources>

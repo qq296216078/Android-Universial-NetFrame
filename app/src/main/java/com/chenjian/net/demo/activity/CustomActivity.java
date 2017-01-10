@@ -96,6 +96,11 @@ public class CustomActivity extends Activity {
         UrlParse paramParse = new UrlParse().putValue("page", "1").putValue("page_size", "3");
         NetHelper.post(urlParse.toStringOnlyHeader(), paramParse.toStringOnlyParam(), new NetStringListener() {
             @Override
+            protected void onCommon() {
+                super.onCommon();
+            }
+
+            @Override
             protected void onSuccess(String string) {
                 LogUtil.d(string);
             }
@@ -123,6 +128,19 @@ public class CustomActivity extends Activity {
                 LogUtil.d(infoListBean.toString());
             }
         });
+
+//        NetHelper.get("url", new NetSingleBeanListener<NetCustomBean<NetUserBean>>() {
+//            @Override
+//            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+//
+//            }
+//
+//            @Override
+//            protected void onSuccess(NetCustomBean<NetUserBean> netUserBeanNetCustomBean) {
+//                NetPageBean netPageBean = netUserBeanNetCustomBean.getNetPageBean();
+//                List<NetUserBean> netUserBeen = netUserBeanNetCustomBean.getTList();
+//            }
+//        });
     }
 
     private void custom() {

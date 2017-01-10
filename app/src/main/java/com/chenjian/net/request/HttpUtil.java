@@ -43,7 +43,7 @@ public class HttpUtil {
             }
             int code = conn.getResponseCode();
             if (code != HttpURLConnection.HTTP_OK) {
-                throw new RespondErrorException();
+                throw new RespondErrorException(code);
             }
             is = conn.getInputStream();
             byte[] tmp = new byte[BUF_SIZE];
@@ -98,7 +98,7 @@ public class HttpUtil {
             conn.connect();
             int code = conn.getResponseCode();
             if (code != HttpURLConnection.HTTP_OK) {
-                throw new Exception("get responseCode: " + code);
+                throw new RespondErrorException(code);
             }
             is = conn.getInputStream();
             baos = new ByteArrayOutputStream();

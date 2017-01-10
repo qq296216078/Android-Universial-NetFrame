@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class UrlParse {
 
-    private Map<String, String> mMap = new LinkedHashMap<String, String>();
+    private Map<String, String> mMap = new LinkedHashMap<>();
     private StringBuilder mHeaderBuilder;
     private boolean mUseCommonParam = true;
 
