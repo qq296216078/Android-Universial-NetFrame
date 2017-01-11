@@ -103,6 +103,9 @@ public class SyncNetExcutor {
      * @return 返回 String
      */
     private String startRequestString() {
+        if (isWaitForToken) {
+            TokenUtil.waitToken();
+        }
         try {
             return request();
         } catch (Exception e) {
