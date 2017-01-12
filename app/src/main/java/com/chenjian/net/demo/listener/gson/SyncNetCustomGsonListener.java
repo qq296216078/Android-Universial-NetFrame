@@ -22,7 +22,7 @@ import java.util.Map;
  * 时间： 2016.12.16 13:51
  */
 
-abstract public class SyncNetCustomGsonListener<Page extends NetBaseBean, T extends NetBaseBean> extends SyncNetHandleListener {
+abstract public class SyncNetCustomGsonListener<Page, T> extends SyncNetHandleListener {
 
     @Override
     protected NetRetBean onReceivedRet(NetRetBean netRetBean) throws JSONException {

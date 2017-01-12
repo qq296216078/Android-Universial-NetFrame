@@ -23,7 +23,7 @@ public class NetUserBean extends NetBaseBean {
 
         /**
          * 本类使用fastjson和gson会出现下面的情况，因为他们没有提供在当前类中去解析当前类
-         * 即 fromJson(jsonString, this) 这样的方法
+         * 即 fromJson(jsonString, getClass(), this) 这样的方法
          * 而是解析后返回一个新的对象，所以就会出现下面这样尴尬的情况
          */
 

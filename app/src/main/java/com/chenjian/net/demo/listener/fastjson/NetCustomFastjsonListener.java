@@ -23,7 +23,7 @@ import java.util.Map;
  * 时间： 2016.12.16 13:51
  */
 
-abstract public class NetCustomFastjsonListener<Page extends NetBaseBean, T extends NetBaseBean> extends NetHandleListener {
+abstract public class NetCustomFastjsonListener<Page, T> extends NetHandleListener {
 
     @Override
     protected void onReceivedRet(NetRetBean netRetBean) throws JSONException {

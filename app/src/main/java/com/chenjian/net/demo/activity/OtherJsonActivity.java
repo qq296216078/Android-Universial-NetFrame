@@ -136,6 +136,7 @@ public class OtherJsonActivity extends Activity {
         /**
          * 需要将NetSingleBeanListener中onReceivedRet方法里的 T t = NetBaseBeanUtil.parseItem(getClass(), 0, object);
          * 改成 T t = NetCommonBeanUtil.parseItem(getClass(), 0, object); 才能用
+         * NetSingleBeanListener中的泛型继承类也要修改成NetCommonBean而不是NetBaseBean
          * 不然编译不通过，因为NetNewsBean继承的是NetCommonBean而不是NetBaseBean
          *
          * 当然，你所有的bean都能继承NetCommonBean，在使用通用或者自定义Listener（非otherjson）时候，
