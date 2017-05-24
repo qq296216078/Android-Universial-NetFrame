@@ -28,7 +28,7 @@ abstract public class NetCommonBean {
      * @param jsonObject 将要解析的JsonObject
      * @param <T>        T
      * @return 子类的具体类型
-     * @throws JSONException
+     * @throws JSONException e
      */
     abstract public <T extends NetCommonBean> T getBeanByJson(JSONObject jsonObject) throws JSONException;
 }

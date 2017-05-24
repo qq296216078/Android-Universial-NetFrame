@@ -1,4 +1,4 @@
-package com.chenjian.net.demo.activity;
+package com.chenjian.net.demo.activity2;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import com.chenjian.net.demo.url.UrlConst;
 import com.chenjian.net.demo.util.LogUtil;
 import com.chenjian.net.demo.util.NetToastUtil;
 import com.chenjian.net.helper.NetHelper;
+import com.chenjian.net.helper.NetHelper2;
 import com.chenjian.net.listener.async.NetListBeanListener;
 import com.chenjian.net.listener.async.NetSingleBeanListener;
 import com.chenjian.net.listener.async.NetStringListener;
@@ -20,6 +21,7 @@ import com.chenjian.net.listener.common.CallbackCode;
 import com.chenjian.net.listener.sync.SyncNetListBeanListener;
 import com.chenjian.net.listener.sync.SyncNetSingleBeanListener;
 import com.chenjian.net.listener.sync.SyncNetStringListener;
+import com.chenjian.net.request.HttpUtil;
 import com.chenjian.net.url.UrlParse;
 
 import java.util.List;
@@ -32,7 +34,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("unchecked")
-public class GetActivity extends Activity {
+public class GetActivity2 extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,30 +106,42 @@ public class GetActivity extends Activity {
                 .putValue("username", "chenjian")
                 .putValue("password", "12345678");
 
-        NetHelper.get(urlParse.toString(), new NetStringListener() {
-            @Override
-            protected void onCommon() {
-                super.onCommon();
-            }
+        NetHelper2.create()
+                /*
+                 * 这里可以指定用哪个网络请求引擎。
+                 * 当前默认用的是系统自带的HttpURLConnection
+                 * 开发者也可以根据自己的需要，换成okhttp、retrofit
+                 */
+                .httpEngine(new HttpUtil())
+                .isWaitForToken(false)
+                .url(urlParse.toString())
+                .netListener(new NetStringListener() {
+                    @Override
+                    protected void onCommon() {
+                        super.onCommon();
+                    }
 
-            @Override
-            protected void onSuccess(String string) {
-                LogUtil.d(string);
-            }
+                    @Override
+                    protected void onSuccess(String string) {
+                        LogUtil.d(string);
+                    }
 
-            @Override
-            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
-                LogUtil.d(netRetBean.toString());
-                requestError(netRetBean);
-            }
-        });
+                    @Override
+                    protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+                        LogUtil.d(netRetBean.toString());
+                        requestError(netRetBean);
+                    }
+                })
+                .get();
 
-//        NetHelper.get(urlParse.toString(), new NetSimpleStringListener() {
-//            @Override
-//            protected void onSuccess(String string) {
-//                LogUtil.d(string);
-//            }
-//        });
+//        NetHelper2.create()
+//                .url(urlParse.toString())
+//                .netListener(new NetSimpleStringListener() {
+//                    @Override
+//                    protected void onSuccess(String string) {
+//
+//                    }
+//                }).get();
     }
 
     private void syncGetString() {
@@ -138,11 +152,14 @@ public class GetActivity extends Activity {
                         .appendRegion(UrlConst.LOGIN)
                         .putValue("username", "chenjian")
                         .putValue("password", "12345678");
-                
-                String originalString = NetHelper.getStringSync(urlParse.toString());
-                LogUtil.d(originalString);
 
-                NetRetBean netRetBean = NetHelper.getSync(urlParse.toString(), new SyncNetStringListener());
+                NetRetBean netRetBean = NetHelper2.create()
+                        .httpEngine(new HttpUtil())
+                        .isWaitForToken(false)
+                        .url(urlParse.toString())
+                        .syncNetListener(new SyncNetStringListener())
+                        .syncGet();
+
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
                     case CODE_SUCCESS_REQUEST:
@@ -166,18 +183,21 @@ public class GetActivity extends Activity {
     private void getBean() {
         UrlParse urlParse = new UrlParse(UrlConst.BASE_URL).appendRegion(UrlConst.USER);
 
-        NetHelper.get(urlParse.toString(), new NetSingleBeanListener<NetUserBean>() {
-            @Override
-            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
-                LogUtil.d(netRetBean.toString());
-                requestError(netRetBean);
-            }
+        NetHelper2.create()
+                .url(urlParse.toString())
+                .netListener(new NetSingleBeanListener<NetUserBean>() {
+                    @Override
+                    protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+                        LogUtil.d(netRetBean.toString());
+                        requestError(netRetBean);
+                    }
 
-            @Override
-            protected void onSuccess(NetUserBean userBean) {
-                LogUtil.d(userBean.toString());
-            }
-        });
+                    @Override
+                    protected void onSuccess(NetUserBean netUserBean) {
+                        LogUtil.d(netUserBean.toString());
+                    }
+                })
+                .get();
     }
 
     private void syncGetBean() {
@@ -185,8 +205,13 @@ public class GetActivity extends Activity {
             @Override
             public void run() {
                 UrlParse urlParse = new UrlParse(UrlConst.BASE_URL).appendRegion(UrlConst.USER);
-                NetRetBean netRetBean = NetHelper.getSync(urlParse.toString(), new SyncNetSingleBeanListener<NetUserBean>() {
-                });
+
+                NetRetBean netRetBean = NetHelper2.create()
+                        .url(urlParse.toString())
+                        .syncNetListener(new SyncNetSingleBeanListener<NetUserBean>() {
+                        })
+                        .syncGet();
+
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
                     case CODE_SUCCESS_REQUEST:
@@ -205,20 +230,23 @@ public class GetActivity extends Activity {
     private void getListBean() {
         UrlParse urlParse = new UrlParse(UrlConst.BASE_URL).appendRegion(UrlConst.USER_LIST);
 
-        NetHelper.get(urlParse.toString(), new NetListBeanListener<NetUserBean>() {
-            @Override
-            protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
-                LogUtil.d(netRetBean.toString());
-                requestError(netRetBean);
-            }
+        NetHelper2.create()
+                .url(urlParse.toString())
+                .netListener(new NetListBeanListener<NetUserBean>() {
+                    @Override
+                    protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
+                        LogUtil.d(netRetBean.toString());
+                        requestError(netRetBean);
+                    }
 
-            @Override
-            protected void onSuccess(List<NetUserBean> userBeen) {
-                for (int i = 0; i < userBeen.size(); i++) {
-                    LogUtil.d(userBeen.get(i).toString());
-                }
-            }
-        });
+                    @Override
+                    protected void onSuccess(List<NetUserBean> netUserBeen) {
+                        for (int i = 0; i < netUserBeen.size(); i++) {
+                            LogUtil.d(netUserBeen.get(i).toString());
+                        }
+                    }
+                })
+                .get();
     }
 
     private void syncGetListBean() {
@@ -226,8 +254,13 @@ public class GetActivity extends Activity {
             @Override
             public void run() {
                 UrlParse urlParse = new UrlParse(UrlConst.BASE_URL).appendRegion(UrlConst.USER_LIST);
-                NetRetBean netRetBean = NetHelper.getSync(urlParse.toString(), new SyncNetListBeanListener<NetUserBean>() {
-                });
+
+                NetRetBean netRetBean = NetHelper2.create()
+                        .url(urlParse.toString())
+                        .syncNetListener(new SyncNetListBeanListener<NetUserBean>() {
+                        })
+                        .syncGet();
+
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
                     case CODE_SUCCESS_REQUEST:

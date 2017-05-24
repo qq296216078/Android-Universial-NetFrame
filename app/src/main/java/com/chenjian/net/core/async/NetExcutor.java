@@ -3,6 +3,7 @@ package com.chenjian.net.core.async;
 import android.os.AsyncTask;
 
 import com.chenjian.net.core.common.RequestType;
+import com.chenjian.net.request.HttpEngine;
 import com.chenjian.net.request.RequestUtil;
 import com.chenjian.net.token.TokenUtil;
 
@@ -14,6 +15,11 @@ import com.chenjian.net.token.TokenUtil;
  */
 
 public class NetExcutor {
+
+    /**
+     * 网络请求引擎
+     */
+    private HttpEngine mHttpEngine;
 
     /**
      * 请求url
@@ -33,12 +39,12 @@ public class NetExcutor {
     /**
      * 是否先等待token请求成功
      */
-    private boolean isWaitForToken;
+    private boolean mIsWaitForToken;
 
     /**
      * 请求后的回调
      */
-    private NetListener mExcutorListener;
+    private NetListener mNetListener;
 
     public void setUrl(String url) {
         this.mUrl = url;
@@ -52,12 +58,16 @@ public class NetExcutor {
         this.mParams = params;
     }
 
-    public void setExcutorListener(NetListener listener) {
-        this.mExcutorListener = listener;
+    public void setNetListener(NetListener listener) {
+        this.mNetListener = listener;
     }
 
-    public void setWaitForToken(boolean waitForToken) {
-        isWaitForToken = waitForToken;
+    public void setIsWaitForToken(boolean isWaitForToken) {
+        this.mIsWaitForToken = isWaitForToken;
+    }
+
+    public void setHttpEngine(HttpEngine httpEngine) {
+        this.mHttpEngine = httpEngine;
     }
 
     public void get() {
@@ -78,16 +88,16 @@ public class NetExcutor {
     private class NetTask extends AsyncTask<String, Integer, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {
-            if (isWaitForToken) {
+            if (mIsWaitForToken) {
                 TokenUtil.waitToken();
             }
             try {
                 String result = request();
-                mExcutorListener.sendSuccess(result);
+                mNetListener.sendSuccess(result);
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
-                mExcutorListener.sendError(e);
+                mNetListener.sendError(e);
                 return false;
             }
         }
@@ -97,11 +107,11 @@ public class NetExcutor {
         String result = null;
         switch (mRequestType) {
             case REQUEST_TYPE_GET:
-                result = RequestUtil.getRequest(mUrl);
+                result = RequestUtil.getRequest(mHttpEngine, mUrl);
                 break;
 
             case REQUEST_TYPE_POST:
-                result = RequestUtil.postRequest(mUrl, mParams);
+                result = RequestUtil.postRequest(mHttpEngine, mUrl, mParams);
                 break;
 
             default:

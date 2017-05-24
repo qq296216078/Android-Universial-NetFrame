@@ -11,25 +11,25 @@ import com.chenjian.net.demo.url.UrlConst;
 
 public class RequestUtil {
 
-//    private static String TAG = RequestUtil.class.getName();
-//
+    private static String TAG = RequestUtil.class.getName();
+
 //    /**
 //     * get请求
 //     *
 //     * @param url url
 //     * @return 返回请求的结果
-//     * @throws Exception
+//     * @throws Exception e
 //     */
-//    public static String getRequest(String url) throws Exception {
+//    public static String getRequest(HttpEngine httpEngine, String url) throws Exception {
 //        String ret;
 //
-//        Log.d(TAG, "request: " + url);
+//        LogUtil.d(TAG, "request: " + url);
 //
-//        String tmp = HttpUtil.get(url);
-//        Log.d(TAG, "response: " + " ret: " + tmp);
+//        String tmp = httpEngine.get(url);
+//        LogUtil.d(TAG, "response: " + " ret: " + tmp);
 //
 //        ret = AesUtil.decryptToString(tmp);
-//        Log.d(TAG, "response: " + " ret: " + ret);
+//        LogUtil.d(TAG, "response: " + " ret: " + ret);
 //
 //        return ret;
 //    }
@@ -40,15 +40,15 @@ public class RequestUtil {
 //     * @param url   url
 //     * @param param post请求的参数
 //     * @return 返回请求的结果
-//     * @throws Exception
+//     * @throws Exception e
 //     */
-//    public static String postRequest(String url, String param) throws Exception {
+//    public static String postRequest(HttpEngine httpEngine, String url, String param) throws Exception {
 //        String ret;
 //
 //        LogUtil.d(TAG, "request: " + url + " param: " + param);
 //        String data = AesUtil.encryptToString(param);
 //
-//        String tmp = HttpUtil.post(url, data);
+//        String tmp = httpEngine.post(url, data);
 //        LogUtil.d(TAG, "response: " + " ret: " + tmp);
 //
 //        ret = AesUtil.decryptToString(tmp);
@@ -66,9 +66,9 @@ public class RequestUtil {
      *
      * @param url url
      * @return 返回请求的结果
-     * @throws Exception
+     * @throws Exception e
      */
-    public static String getRequest(String url) throws Exception {
+    public static String getRequest(HttpEngine httpEngine, String url) throws Exception {
         String ret = "";
         if (url.contains(UrlConst.BASE_URL + UrlConst.LOGIN)) {
             ret = "{\n" +
@@ -156,9 +156,9 @@ public class RequestUtil {
      * @param url   url
      * @param param post请求的参数
      * @return 返回请求的结果
-     * @throws Exception
+     * @throws Exception e
      */
-    public static String postRequest(String url, String param) throws Exception {
+    public static String postRequest(HttpEngine httpEngine, String url, String param) throws Exception {
         String ret = "";
         if (url.contains(UrlConst.BASE_URL + UrlConst.LOGIN)) {
             ret = "{\n" +

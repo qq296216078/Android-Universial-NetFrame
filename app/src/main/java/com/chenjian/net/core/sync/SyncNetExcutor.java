@@ -2,6 +2,8 @@ package com.chenjian.net.core.sync;
 
 import com.chenjian.net.bean.NetRetBean;
 import com.chenjian.net.core.common.RequestType;
+import com.chenjian.net.request.HttpEngine;
+import com.chenjian.net.request.HttpUtil;
 import com.chenjian.net.request.RequestUtil;
 import com.chenjian.net.token.TokenUtil;
 
@@ -13,6 +15,11 @@ import com.chenjian.net.token.TokenUtil;
  */
 
 public class SyncNetExcutor {
+
+    /**
+     * 网络请求引擎
+     */
+    private HttpEngine mHttpEngine;
 
     /**
      * 请求url
@@ -32,7 +39,7 @@ public class SyncNetExcutor {
     /**
      * 是否先等待token请求成功
      */
-    private boolean isWaitForToken;
+    private boolean mIsWaitForToken;
 
     /**
      * 请求后的回调
@@ -51,12 +58,16 @@ public class SyncNetExcutor {
         this.mParams = params;
     }
 
-    public void setWaitForToken(boolean waitForToken) {
-        isWaitForToken = waitForToken;
+    public void setIsWaitForToken(boolean isWaitForToken) {
+        this.mIsWaitForToken = isWaitForToken;
     }
 
     public void setSyncNetListener(SyncNetListener syncNetListener) {
         this.mSyncNetListener = syncNetListener;
+    }
+
+    public void setHttpEngine(HttpEngine httpEngine) {
+        this.mHttpEngine = httpEngine;
     }
 
     public NetRetBean get() {
@@ -75,7 +86,7 @@ public class SyncNetExcutor {
      * @return 返回 NetRetBean
      */
     private NetRetBean startRequest() {
-        if (isWaitForToken) {
+        if (mIsWaitForToken) {
             TokenUtil.waitToken();
         }
         try {
@@ -103,7 +114,7 @@ public class SyncNetExcutor {
      * @return 返回 String
      */
     private String startRequestString() {
-        if (isWaitForToken) {
+        if (mIsWaitForToken) {
             TokenUtil.waitToken();
         }
         try {
@@ -118,11 +129,11 @@ public class SyncNetExcutor {
         String result = null;
         switch (mRequestType) {
             case REQUEST_TYPE_GET:
-                result = RequestUtil.getRequest(mUrl);
+                result = RequestUtil.getRequest(mHttpEngine, mUrl);
                 break;
 
             case REQUEST_TYPE_POST:
-                result = RequestUtil.postRequest(mUrl, mParams);
+                result = RequestUtil.postRequest(mHttpEngine, mUrl, mParams);
                 break;
 
             default:

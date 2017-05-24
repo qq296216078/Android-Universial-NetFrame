@@ -22,7 +22,7 @@ public class NetCommonBeanUtil {
      * @param jsonObject 用来解析的 json
      * @param <T>        泛型 T
      * @return 返回泛型T的实例
-     * @throws JSONException
+     * @throws JSONException e
      */
     public static <T extends NetCommonBean> T parseItem(Class aClass, int tIndex, JSONObject jsonObject) throws JSONException {
         T t = getBean(aClass, tIndex);
@@ -43,9 +43,7 @@ public class NetCommonBeanUtil {
         try {
             // 使用newInstance创建实例的类，必须有无参构造方法
             entity = entityClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return entity;

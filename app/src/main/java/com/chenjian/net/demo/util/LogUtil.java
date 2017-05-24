@@ -15,5 +15,6 @@ public class LogUtil {
 
     public static void d(String tag, String msg) {
         Log.d(tag, msg);
+        System.out.println(tag + " " + msg); // 华为手机Log打不出来，只能用System.out
     }
 }

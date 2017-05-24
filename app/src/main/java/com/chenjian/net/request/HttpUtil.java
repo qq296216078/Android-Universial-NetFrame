@@ -17,13 +17,14 @@ import java.net.URL;
  * 时间： 2016.12.14 13:53
  */
 
-public class HttpUtil {
+public class HttpUtil implements HttpEngine {
 
     private static final int CONNECT_TIMEOUT = 1000 * 10;
     private static final int READ_TIMEOUT = 1000 * 10;
     private static final int BUF_SIZE = 1024 * 10;
 
-    public static String post(String requestUrl, String param) throws Exception {
+    @Override
+    public String post(String requestUrl, String param) throws Exception {
         HttpURLConnection conn = null;
         OutputStream out = null;
         InputStream is = null;
@@ -84,7 +85,8 @@ public class HttpUtil {
         }
     }
 
-    public static String get(String requestUrl) throws Exception {
+    @Override
+    public String get(String requestUrl) throws Exception {
         HttpURLConnection conn = null;
         InputStream is = null;
         ByteArrayOutputStream baos = null;

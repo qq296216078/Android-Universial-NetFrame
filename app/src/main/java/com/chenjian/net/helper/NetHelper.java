@@ -8,12 +8,15 @@ import com.chenjian.net.core.sync.SyncNetListener;
 import com.chenjian.net.data.NetConstants;
 
 /**
- * 网络请求工具类
+ * 网络请求工具类，这个类已经过时了
+ *
+ * 在版本1.0.1，版本号为 10001 中，已经更新了 NetHelper2 类
  * <p>
  * 作者： ChenJian
  * 时间： 2016.12.14 11:24
  */
 
+@Deprecated
 public class NetHelper {
 
     /**
@@ -36,8 +39,8 @@ public class NetHelper {
     public static void get(String url, boolean isWaitForToken, NetListener listener) {
         NetExcutor netExcutor = new NetExcutor();
         netExcutor.setUrl(url);
-        netExcutor.setWaitForToken(isWaitForToken);
-        netExcutor.setExcutorListener(listener);
+        netExcutor.setIsWaitForToken(isWaitForToken);
+        netExcutor.setNetListener(listener);
         netExcutor.get();
     }
 
@@ -64,8 +67,8 @@ public class NetHelper {
         NetExcutor netExcutor = new NetExcutor();
         netExcutor.setUrl(url);
         netExcutor.setParams(params);
-        netExcutor.setWaitForToken(isWaitForToken);
-        netExcutor.setExcutorListener(listener);
+        netExcutor.setIsWaitForToken(isWaitForToken);
+        netExcutor.setNetListener(listener);
         netExcutor.post();
     }
 
@@ -91,7 +94,7 @@ public class NetHelper {
     public static NetRetBean getSync(String url, boolean isWaitForToken, SyncNetListener syncNetListener) {
         SyncNetExcutor syncNetExcutor = new SyncNetExcutor();
         syncNetExcutor.setUrl(url);
-        syncNetExcutor.setWaitForToken(isWaitForToken);
+        syncNetExcutor.setIsWaitForToken(isWaitForToken);
         syncNetExcutor.setSyncNetListener(syncNetListener);
         return syncNetExcutor.get();
     }
@@ -121,7 +124,7 @@ public class NetHelper {
         SyncNetExcutor syncNetExcutor = new SyncNetExcutor();
         syncNetExcutor.setUrl(url);
         syncNetExcutor.setParams(params);
-        syncNetExcutor.setWaitForToken(isWaitForToken);
+        syncNetExcutor.setIsWaitForToken(isWaitForToken);
         syncNetExcutor.setSyncNetListener(syncNetListener);
         return syncNetExcutor.post();
     }
@@ -146,7 +149,7 @@ public class NetHelper {
     public static String getStringSync(String url, boolean isWaitForToken) {
         SyncNetExcutor syncNetExcutor = new SyncNetExcutor();
         syncNetExcutor.setUrl(url);
-        syncNetExcutor.setWaitForToken(isWaitForToken);
+        syncNetExcutor.setIsWaitForToken(isWaitForToken);
         return syncNetExcutor.getString();
     }
 
@@ -173,7 +176,7 @@ public class NetHelper {
         SyncNetExcutor syncNetExcutor = new SyncNetExcutor();
         syncNetExcutor.setUrl(url);
         syncNetExcutor.setParams(params);
-        syncNetExcutor.setWaitForToken(isWaitForToken);
+        syncNetExcutor.setIsWaitForToken(isWaitForToken);
         return syncNetExcutor.postString();
     }
 }
