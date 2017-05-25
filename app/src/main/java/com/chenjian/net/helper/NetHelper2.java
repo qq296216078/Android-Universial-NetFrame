@@ -29,6 +29,10 @@ public class NetHelper2 {
         this.mIsWaitForToken = NetConstants.defaultWaitForToken;
     }
 
+    /**
+     * 创建实例
+     * @return 返回一个实例
+     */
     public static NetHelper2 create() {
         return new NetHelper2();
     }
@@ -46,39 +50,58 @@ public class NetHelper2 {
         return this;
     }
 
+    /**
+     * 设置url
+     * @param url url
+     * @return this
+     */
     public NetHelper2 url(String url) {
         this.mUrl = url;
         return this;
     }
 
+    /**
+     * 设置参数
+     * @param param param
+     * @return this
+     */
     public NetHelper2 param(String param) {
         this.mParam = param;
         return this;
     }
 
+    /**
+     * 是否等待token
+     * @param isWaitForToken isWaitForToken
+     * @return this
+     */
     public NetHelper2 isWaitForToken(boolean isWaitForToken) {
         this.mIsWaitForToken = isWaitForToken;
         return this;
     }
 
-    public NetHelper2 netListener(NetListener netListener) {
+    /**
+     * 发起get异步请求
+     * @param netListener 异步请求监听器
+     */
+    public void get(NetListener netListener) {
         this.mNetListener = netListener;
-        return this;
-    }
-
-    public NetHelper2 syncNetListener(SyncNetListener syncNetListener) {
-        this.mSyncNetListener = syncNetListener;
-        return this;
-    }
-
-    public void get() {
         request(RequestType.REQUEST_TYPE_GET);
     }
 
-    public void post() {
+    /**
+     * 发起post异步请求
+     * @param netListener 异步请求监听器
+     */
+    public void post(NetListener netListener) {
+        this.mNetListener = netListener;
         request(RequestType.REQUEST_TYPE_POST);
     }
 
+    /**
+     * 异步请求
+     * @param requestType requestType
+     */
     private void request(RequestType requestType) {
         NetExcutor netExcutor = new NetExcutor();
 
@@ -108,14 +131,31 @@ public class NetHelper2 {
         }
     }
 
-    public NetRetBean syncGet() {
+    /**
+     * 发起get同步请求
+     * @param syncNetListener syncNetListener
+     * @return NetRetBean
+     */
+    public NetRetBean syncGet(SyncNetListener syncNetListener) {
+        this.mSyncNetListener = syncNetListener;
         return syncRequest(RequestType.REQUEST_TYPE_GET);
     }
 
-    public NetRetBean syncPost() {
+    /**
+     * 发起post同步请求
+     * @param syncNetListener syncNetListener
+     * @return NetRetBean
+     */
+    public NetRetBean syncPost(SyncNetListener syncNetListener) {
+        this.mSyncNetListener = syncNetListener;
         return syncRequest(RequestType.REQUEST_TYPE_POST);
     }
 
+    /**
+     * 同步请求
+     * @param requestType requestType
+     * @return NetRetBean
+     */
     private NetRetBean syncRequest(RequestType requestType) {
         NetRetBean netRetBean = null;
         SyncNetExcutor syncNetExcutor = new SyncNetExcutor();

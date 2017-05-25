@@ -67,7 +67,7 @@ public class OtherJsonActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetSingleGsonListener<NetGsonBean>() {
+                .get(new NetSingleGsonListener<NetGsonBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         // 这里是ui线程
@@ -79,8 +79,7 @@ public class OtherJsonActivity2 extends Activity {
                         // 解析成功
                         LogUtil.d(gsonBean.toString());
                     }
-                })
-                .get();
+                });
     }
 
     private void gsonError() {
@@ -88,7 +87,7 @@ public class OtherJsonActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetSingleGsonListener<NetInfoBean>() {
+                .get(new NetSingleGsonListener<NetInfoBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
 
@@ -99,8 +98,7 @@ public class OtherJsonActivity2 extends Activity {
                         // 打印出来三个字段都为null。gson的规则是解析不到的字段为null
                         LogUtil.d(infoBean.toString());
                     }
-                })
-                .get();
+                });
     }
 
     private void fastjson() {
@@ -108,7 +106,7 @@ public class OtherJsonActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetSingleFastjsonListener<NetFastjsonBean>() {
+                .get(new NetSingleFastjsonListener<NetFastjsonBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
 
@@ -119,8 +117,7 @@ public class OtherJsonActivity2 extends Activity {
                         // 解析成功
                         LogUtil.d(fastjsonBean.toString());
                     }
-                })
-                .get();
+                });
     }
 
     private void fastjsonError() {
@@ -128,7 +125,7 @@ public class OtherJsonActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetSingleFastjsonListener<NetInfoBean>() {
+                .get(new NetSingleFastjsonListener<NetInfoBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
 
@@ -139,14 +136,13 @@ public class OtherJsonActivity2 extends Activity {
                         // 打印出来三个字段都为null。fastjson的规则是解析不到的字段为null
                         LogUtil.d(infoBean.toString());
                     }
-                })
-                .get();
+                });
     }
 
     private void otherjson() {
         UrlParse urlParse = new UrlParse(UrlConst.BASE_URL).appendRegion(UrlConst.INFO);
 
-        /**
+        /*
          * 需要将NetSingleBeanListener中onReceivedRet方法里的 T t = NetBaseBeanUtil.parseItem(getClass(), 0, object);
          * 改成 T t = NetCommonBeanUtil.parseItem(getClass(), 0, object); 才能用
          * NetSingleBeanListener中的泛型继承类也要修改成NetCommonBean而不是NetBaseBean

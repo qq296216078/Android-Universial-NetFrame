@@ -12,7 +12,6 @@ import com.chenjian.net.demo.bean.NetUserBean;
 import com.chenjian.net.demo.url.UrlConst;
 import com.chenjian.net.demo.util.LogUtil;
 import com.chenjian.net.demo.util.NetToastUtil;
-import com.chenjian.net.helper.NetHelper;
 import com.chenjian.net.helper.NetHelper2;
 import com.chenjian.net.listener.async.NetListBeanListener;
 import com.chenjian.net.listener.async.NetSingleBeanListener;
@@ -115,7 +114,7 @@ public class GetActivity2 extends Activity {
                 .httpEngine(new HttpUtil())
                 .isWaitForToken(false)
                 .url(urlParse.toString())
-                .netListener(new NetStringListener() {
+                .get(new NetStringListener() {
                     @Override
                     protected void onCommon() {
                         super.onCommon();
@@ -131,8 +130,7 @@ public class GetActivity2 extends Activity {
                         LogUtil.d(netRetBean.toString());
                         requestError(netRetBean);
                     }
-                })
-                .get();
+                });
 
 //        NetHelper2.create()
 //                .url(urlParse.toString())
@@ -154,11 +152,8 @@ public class GetActivity2 extends Activity {
                         .putValue("password", "12345678");
 
                 NetRetBean netRetBean = NetHelper2.create()
-                        .httpEngine(new HttpUtil())
-                        .isWaitForToken(false)
                         .url(urlParse.toString())
-                        .syncNetListener(new SyncNetStringListener())
-                        .syncGet();
+                        .syncGet(new SyncNetStringListener());
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
@@ -185,7 +180,7 @@ public class GetActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetSingleBeanListener<NetUserBean>() {
+                .get(new NetSingleBeanListener<NetUserBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -196,8 +191,7 @@ public class GetActivity2 extends Activity {
                     protected void onSuccess(NetUserBean netUserBean) {
                         LogUtil.d(netUserBean.toString());
                     }
-                })
-                .get();
+                });
     }
 
     private void syncGetBean() {
@@ -208,9 +202,8 @@ public class GetActivity2 extends Activity {
 
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toString())
-                        .syncNetListener(new SyncNetSingleBeanListener<NetUserBean>() {
-                        })
-                        .syncGet();
+                        .syncGet(new SyncNetSingleBeanListener<NetUserBean>() {
+                        });
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
@@ -232,7 +225,7 @@ public class GetActivity2 extends Activity {
 
         NetHelper2.create()
                 .url(urlParse.toString())
-                .netListener(new NetListBeanListener<NetUserBean>() {
+                .get(new NetListBeanListener<NetUserBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -245,8 +238,7 @@ public class GetActivity2 extends Activity {
                             LogUtil.d(netUserBeen.get(i).toString());
                         }
                     }
-                })
-                .get();
+                });
     }
 
     private void syncGetListBean() {
@@ -257,9 +249,8 @@ public class GetActivity2 extends Activity {
 
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toString())
-                        .syncNetListener(new SyncNetListBeanListener<NetUserBean>() {
-                        })
-                        .syncGet();
+                        .syncGet(new SyncNetListBeanListener<NetUserBean>() {
+                        });
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {

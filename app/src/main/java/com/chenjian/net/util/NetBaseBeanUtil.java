@@ -22,7 +22,7 @@ public class NetBaseBeanUtil {
      * @param jsonObject 用来解析的 json
      * @param <T>        泛型 T
      * @return 返回泛型T的实例
-     * @throws JSONException
+     * @throws JSONException e
      */
     public static <T extends NetBaseBean> T parseItem(Class aClass, int tIndex, JSONObject jsonObject) throws JSONException {
         T t = getBean(aClass, tIndex);

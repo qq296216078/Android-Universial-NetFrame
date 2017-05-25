@@ -99,7 +99,7 @@ public class CustomActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param(paramParse.toStringOnlyParam())
-                .netListener(new NetStringListener() {
+                .post(new NetStringListener() {
                     @Override
                     protected void onSuccess(String string) {
                         LogUtil.d(string);
@@ -110,8 +110,7 @@ public class CustomActivity2 extends Activity {
                         LogUtil.d(netRetBean.toString());
                         requestError(netRetBean);
                     }
-                })
-                .post();
+                });
     }
 
     private void customBean() {
@@ -121,7 +120,7 @@ public class CustomActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param(paramParse.toStringOnlyParam())
-                .netListener(new NetSingleBeanListener<NetInfoListBean>() {
+                .post(new NetSingleBeanListener<NetInfoListBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -132,8 +131,7 @@ public class CustomActivity2 extends Activity {
                     protected void onSuccess(NetInfoListBean infoListBean) {
                         LogUtil.d(infoListBean.toString());
                     }
-                })
-                .post();
+                });
     }
 
     private void custom() {
@@ -143,7 +141,7 @@ public class CustomActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param(paramParse.toStringOnlyParam())
-                .netListener(new NetCustomBeanListener<NetPageBean, NetInfoBean>() {
+                .post(new NetCustomBeanListener<NetPageBean, NetInfoBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -157,8 +155,7 @@ public class CustomActivity2 extends Activity {
                             LogUtil.d(infoBeen.get(i).toString());
                         }
                     }
-                })
-                .post();
+                });
     }
 
     private void syncCustom() {
@@ -171,9 +168,8 @@ public class CustomActivity2 extends Activity {
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toStringOnlyHeader())
                         .param(paramParse.toStringOnlyParam())
-                        .syncNetListener(new SyncNetCustomBeanListener<NetPageBean, NetInfoBean>() {
-                        })
-                        .syncPost();
+                        .syncPost(new SyncNetCustomBeanListener<NetPageBean, NetInfoBean>() {
+                        });
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {

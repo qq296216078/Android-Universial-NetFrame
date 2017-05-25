@@ -81,7 +81,7 @@ public class PostActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param(paramParse.toStringOnlyParam())
-                .netListener(new NetStringListener() {
+                .post(new NetStringListener() {
                     @Override
                     protected void onCommon() {
                         super.onCommon();
@@ -97,8 +97,7 @@ public class PostActivity2 extends Activity {
                         LogUtil.d(netRetBean.toString());
                         requestError(netRetBean);
                     }
-                })
-                .post();
+                });
 
 //        NetHelper2.create()
 //                .url(urlParse.toStringOnlyHeader())
@@ -131,9 +130,8 @@ public class PostActivity2 extends Activity {
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toStringOnlyHeader())
                         .param(paramParse.toStringOnlyParam())
-                        .syncNetListener(new SyncNetStringListener()
-                        )
-                        .syncPost();
+                        .syncPost(new SyncNetStringListener()
+                        );
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
@@ -156,7 +154,7 @@ public class PostActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param("")
-                .netListener(new NetSingleBeanListener<NetUserBean>() {
+                .post(new NetSingleBeanListener<NetUserBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -167,8 +165,7 @@ public class PostActivity2 extends Activity {
                     protected void onSuccess(NetUserBean netUserBean) {
                         LogUtil.d(netUserBean.toString());
                     }
-                })
-                .post();
+                });
     }
 
     private void syncPostBean() {
@@ -180,9 +177,8 @@ public class PostActivity2 extends Activity {
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toStringOnlyHeader())
                         .param("")
-                        .syncNetListener(new SyncNetSingleBeanListener<NetUserBean>() {
-                        })
-                        .syncPost();
+                        .syncPost(new SyncNetSingleBeanListener<NetUserBean>() {
+                        });
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {
@@ -205,7 +201,7 @@ public class PostActivity2 extends Activity {
         NetHelper2.create()
                 .url(urlParse.toStringOnlyHeader())
                 .param("")
-                .netListener(new NetListBeanListener<NetUserBean>() {
+                .post(new NetListBeanListener<NetUserBean>() {
                     @Override
                     protected void onError(CallbackCode errorCode, NetRetBean netRetBean) {
                         LogUtil.d(netRetBean.toString());
@@ -218,8 +214,7 @@ public class PostActivity2 extends Activity {
                             LogUtil.d(userBeen.get(i).toString());
                         }
                     }
-                })
-                .post();
+                });
     }
 
     private void syncPostListBean() {
@@ -231,9 +226,8 @@ public class PostActivity2 extends Activity {
                 NetRetBean netRetBean = NetHelper2.create()
                         .url(urlParse.toStringOnlyHeader())
                         .param("")
-                        .syncNetListener(new SyncNetListBeanListener<NetUserBean>() {
-                        })
-                        .syncPost();
+                        .syncPost(new SyncNetListBeanListener<NetUserBean>() {
+                        });
 
                 CallbackCode callbackCode = netRetBean.getCallbackCode();
                 switch (callbackCode) {

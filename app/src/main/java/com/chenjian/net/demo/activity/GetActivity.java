@@ -138,7 +138,7 @@ public class GetActivity extends Activity {
                         .appendRegion(UrlConst.LOGIN)
                         .putValue("username", "chenjian")
                         .putValue("password", "12345678");
-                
+
                 String originalString = NetHelper.getStringSync(urlParse.toString());
                 LogUtil.d(originalString);
 
